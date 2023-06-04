@@ -11,17 +11,17 @@ import shutil
 
 SOURCE_PATH = "./Input/Letters/starting_letter.txt"
 DESTINATION_PATH = "./Output/ReadyToSend/"
-
+PLACEHOLDER = "[name]"
 
 names_file = open("./Input/Names/invited_names.txt", "r")
 names = names_file.readlines()
 
 for name in names:
-    new_file_name_path = DESTINATION_PATH + name + "invite.txt"
+    new_file_name_path = DESTINATION_PATH + name + "_invite.txt"
     with open(SOURCE_PATH, 'r') as open_file, open(new_file_name_path, 'w') as write_file:
         for line in open_file:
-            if "[name]" in line:
-                new_line = line.replace("[name]", name.strip(), 1)
+            if PLACEHOLDER in line:
+                new_line = line.replace(PLACEHOLDER, name.strip(), 1)
                 write_file.write(new_line)
             else:
                 write_file.write(line)
